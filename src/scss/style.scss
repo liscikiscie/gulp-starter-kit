@@ -1,0 +1,7 @@
+@import "partials/variables";
+
+body {
+    background-color: $color-bg;
+    color: $color-txt;
+    display: flex;
+}

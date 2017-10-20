@@ -22,6 +22,7 @@ var config = {
     htmlin: 'src/*.html',
     scssin: 'src/scss/**/*.scss',
     fontsin: 'src/fonts/**/*.{eot,svg,ttf,woff,woff2}',
+    filesin: 'src/files/**/*.{pdf,docx,doc}',
 
     cssout: 'dist/css',
     jsout: 'dist/js',
@@ -31,6 +32,7 @@ var config = {
     cssreplaceout: 'css/style.css',
     jsreplaceout: 'js/script.js',
     fontsout: 'dist/fonts',
+    filesout: 'dist/files',
 
     cssoutname: 'style.css',
     jsoutname: 'script.js'
@@ -104,12 +106,17 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest(config.fontsout));
 });
 
+gulp.task('files', function () {
+    return gulp.src(config.filesin)
+        .pipe(gulp.dest(config.filesout));
+});
+
 gulp.task('clean', function () {
     return del([ config.dist ]);
 });
 
 gulp.task('build', function () {
-    sequence('clean', [ 'html', 'js', 'css', 'img', 'fonts' ])
+    sequence('clean', [ 'html', 'js', 'css', 'img', 'fonts',  'files'])
 });
 
 gulp.task('default', [ 'serve' ]);
